@@ -1,10 +1,14 @@
 <script lang="ts">
   import reports from '#lib/data/reports-4471.json';
   import notes from '#lib/data/desk-notes.json';
-  import { groupByCause, readAs, ticketCause, uniqueById, type Report } from '#lib/kb/causes';
+  import { groupByCause, readAs, ticketCause, uniqueById, type CauseGroup, type Report } from '#lib/kb/causes';
   import { tenantOf } from '#lib/kb/locales';
 
-  let { ticket }: { ticket: number } = $props();
+  type IssueRef = { number: number; url: string };
+  let {
+    ticket,
+    issueRefs = {},
+  }: { ticket: number; issueRefs?: Partial<Record<CauseGroup['cause'], IssueRef>> } = $props();
 
   const merged = $derived(uniqueById(reports as Report[]).filter((r) => r.mergedInto === ticket));
   const groups = $derived(groupByCause(merged, tenantOf));
@@ -24,7 +28,7 @@
 
 <table>
   <thead>
-    <tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th><th>seen</th><th></th></tr>
+    <tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th><th>seen</th><th>GitHub issue</th></tr>
   </thead>
   <tbody>
     {#each groups as g (g.cause)}
@@ -34,7 +38,16 @@
         <td class="tags">{tags(g)}</td>
         <td>{g.tenants}</td>
         <td>{g.firstSeen} → {g.lastSeen}</td>
-        <td>{g.cause === owner ? `#${ticket}` : 'not this ticket — no ticket of its own'}</td>
+        <td>
+          {#if issueRefs[g.cause]}
+            {@const issue = issueRefs[g.cause]}
+            <a href={issue.url}>#{issue.number}</a> · source #{ticket}
+          {:else if g.cause === owner}
+            #{ticket}
+          {:else}
+            not this ticket — no ticket of its own
+          {/if}
+        </td>
       </tr>
     {/each}
   </tbody>

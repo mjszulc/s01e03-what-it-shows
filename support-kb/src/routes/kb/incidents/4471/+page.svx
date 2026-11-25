@@ -45,7 +45,13 @@ tenant-specific groups, not a third cause.
 
 ## Reports in #4471
 
-<CauseTable ticket={4471} />
+<CauseTable
+  ticket={4471}
+  issueRefs={{
+    parser: { number: 1, url: 'https://github.com/mjszulc/s01e03-what-it-shows/issues/1' },
+    hint: { number: 2, url: 'https://github.com/mjszulc/s01e03-what-it-shows/issues/2' }
+  }}
+/>
 
 ## Report and merge timeline
 
