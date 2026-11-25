@@ -1,0 +1,54 @@
+---
+layout: runbook
+title: '#4471 · two date causes'
+owner: support desk
+status: known
+reviewed: 2026-11-25
+signature: mjszulc
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+
+  const signature = 'mjszulc';
+</script>
+
+Ticket #4471 combines reports about two different date-handling bugs. The export contains
+overlapping rows, so the components below count each report ID once and group reports by
+tenant locale, booking form, and channel.
+
+<Callout>
+Keep #4471 as the source merge. Track each cause in its own issue, using the report count
+shown in the table below.
+</Callout>
+
+## What the causes mean
+
+### `parser` · shared date parser
+
+Day-first tenants send dates through the app, email, and booking-v2 form. The shared parser
+reads month first, so it can flip the day and month. The `parser` row groups these reports
+across all affected tenants.
+
+### `hint` · booking-v3 date hint
+
+The booking-v3 form displays `MM/DD/YYYY` for day-first tenants. People follow that hint,
+but the form reads the value using the tenant's locale. This is a separate cause from the
+shared parser.
+
+Intake tags are guesses made from the reporter's browser. They do not determine the cause;
+the table shows them only as context. The one-day-move notes are symptoms within the
+tenant-specific groups, not a third cause.
+
+## Reports in #4471
+
+<CauseTable ticket={4471} />
+
+## Report and merge timeline
+
+<QueueTimeline ticket={4471} />
+
+<RenderStamp {signature} />
