@@ -4,7 +4,7 @@ title: '#4471 · two date causes'
 owner: support desk
 status: closed
 reviewed: 2026-11-25
-signature: mjszulc
+signature: v1.eyJzdWIiOiIxMDE1OCIsImF1ZCI6ImNoYWxsZW5nZTp3aGF0LWl0LXNob3dzIiwiaWF0IjoxNzk1NTY2Mjk3LCJleHAiOjE3OTU2NTI2OTd9.3x4XBxkZMCxjC20DzY4cMiifuWE-m2HiENqjOYmUwEc
 ---
 
 <script>
@@ -13,7 +13,7 @@ signature: mjszulc
   import Callout from '#lib/kb/Callout.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 
-  const signature = 'mjszulc';
+  const signature = 'v1.eyJzdWIiOiIxMDE1OCIsImF1ZCI6ImNoYWxsZW5nZTp3aGF0LWl0LXNob3dzIiwiaWF0IjoxNzk1NTY2Mjk3LCJleHAiOjE3OTU2NTI2OTd9.3x4XBxkZMCxjC20DzY4cMiifuWE-m2HiENqjOYmUwEc';
 </script>
 
 Ticket #4471 combines reports about two different date-handling bugs. The export contains
