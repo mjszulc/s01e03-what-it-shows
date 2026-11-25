@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 · two date causes'
 owner: support desk
-status: known
+status: closed
 reviewed: 2026-11-25
 signature: mjszulc
 ---
@@ -21,8 +21,8 @@ overlapping rows, so the components below count each report ID once and group re
 tenant locale, booking form, and channel.
 
 <Callout>
-Keep #4471 as the source merge. Track each cause in its own issue, using the report count
-shown in the table below.
+Keep #4471 as the source merge. Each cause has its own linked issue and uses the unique
+report count shown in the table below.
 </Callout>
 
 ## What the causes mean
@@ -56,5 +56,14 @@ tenant-specific groups, not a third cause.
 ## Report and merge timeline
 
 <QueueTimeline ticket={4471} />
+
+## Engineering update · 5 October
+
+The desk closed #4471 on 5 October. It fixed the shared parser with
+`fix(dates): parse dd/mm for eu locales`. The booking-v3 form was retired, so that cause
+will not be fixed.
+
+- `parser`: [issue #1](https://github.com/mjszulc/s01e03-what-it-shows/issues/1), completed.
+- `hint`: [issue #2](https://github.com/mjszulc/s01e03-what-it-shows/issues/2), not planned.
 
 <RenderStamp {signature} />

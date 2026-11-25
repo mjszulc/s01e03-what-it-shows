@@ -14,3 +14,5 @@ The export does not include the app's package manifest or build scripts, so the 
 ## Report reconciliation
 
 The export has 427 rows and 412 unique report IDs. Fifteen rows repeat existing IDs, with no conflicting duplicate records. The tenant, form, and channel rules in `support-kb/src/lib/kb/causes.ts` place 379 reports in the shared parser group and 33 in the booking-v3 hint group.
+
+The course's 5 October desk update says the parser fix shipped as `fix(dates): parse dd/mm for eu locales` and booking-v3 was retired. Issue #1 is closed as completed; issue #2 is closed as not planned.
